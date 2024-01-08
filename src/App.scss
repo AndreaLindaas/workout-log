@@ -1,0 +1,16 @@
+:root {
+  --jet: #333;
+  --gold: #ffd700;
+  --burgundy: #800020;
+}
+body {
+  margin: 0;
+}
+main {
+  background-color: var(--jet);
+  height: 500px;
+}
+ul {
+  margin: 0;
+  list-style-type: none;
+}

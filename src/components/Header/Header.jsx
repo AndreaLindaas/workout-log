@@ -30,7 +30,7 @@ export default function Header() {
         </li>
         <li>
           <Link to="#">
-            <span>Other</span>
+            <span>Otherlang thing</span>
           </Link>
         </li>
       </ul>
@@ -42,6 +42,7 @@ export default function Header() {
         <div className="menuIcon" onClick={toggleMenu}>
           <MenuIcon />
         </div>
+
         <Drawer
           anchor="top"
           open={menuOpen}
