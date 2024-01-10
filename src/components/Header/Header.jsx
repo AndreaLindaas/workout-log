@@ -25,12 +25,12 @@ export default function Header() {
       <ul className="headerList">
         <li>
           <Link to="/">
-            <span>Home</span>
+            <span>Switch user</span>
           </Link>
         </li>
         <li>
-          <Link to="#">
-            <span>Otherlang thing</span>
+          <Link to="/excercises">
+            <span>Excercises</span>
           </Link>
         </li>
       </ul>
