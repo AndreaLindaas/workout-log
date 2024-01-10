@@ -1,14 +1,15 @@
 :root {
-  --jet: #333;
-  --gold: #ffd700;
-  --burgundy: #800020;
+  --primary: #e5e5e5;
+  --secondary: #fca311;
+  --tertiary: #14213d;
 }
 body {
   margin: 0;
 }
 main {
-  background-color: var(--jet);
-  height: 500px;
+  background-color: var(--primary);
+  padding-top: 10px;
+  min-height: 100vh;
 }
 ul {
   margin: 0;

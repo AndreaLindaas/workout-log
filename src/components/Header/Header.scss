@@ -1,20 +1,20 @@
 .menuIcon {
-  background-color: var(--jet);
-  color: var(--gold);
+  background-color: var(--tertiary);
+  color: #fff;
   text-align: right;
   padding: 20px;
 }
 ul.headerList {
-  background-color: var(--burgundy);
-  color: var(--gold);
+  background-color: var(--tertiary);
+  color: #fff;
   padding: 20px;
-  text-align: center;
+  text-align: right;
   li {
     padding: 5px 0;
   }
 
   a {
-    color: var(--gold);
+    color: #fff;
     text-decoration: none;
   }
 }
