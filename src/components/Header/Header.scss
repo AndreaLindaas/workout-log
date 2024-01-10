@@ -18,3 +18,10 @@ ul.headerList {
     text-decoration: none;
   }
 }
+@media screen and (min-width: 768px) {
+  ul.headerList {
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+  }
+}
