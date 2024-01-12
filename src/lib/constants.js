@@ -1,1 +1,1 @@
-export const BASE_URL = "http://trening.lindaas.net/api";
+export const BASE_URL = "//trening.lindaas.net/api";
