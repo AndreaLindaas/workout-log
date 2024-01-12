@@ -5,9 +5,11 @@ import {
   FormHelperText,
   Button,
 } from "@mui/material";
+import User from "../../components/User/User";
 export default function CreateExcercise() {
   return (
     <>
+      <User />
       <form action="">
         <div>
           <FormControl variant="filled" className="form">

@@ -2,16 +2,17 @@ import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BASE_URL } from "../../lib/constants";
+import User from "../../components/User/User";
 export default function Dashboard() {
   const params = useParams();
-  const [user, setUser] = useState([]);
+
   const [performances, setPerformances] = useState([]);
   const [dates, setDates] = useState([]);
   useEffect(() => {
     fetch(`${BASE_URL}/users/user/?id=${params.id}`)
       .then((response) => response.json())
       .then((result) => {
-        setUser(result[0]);
+        console.log(result);
       });
   }, []);
 
@@ -48,7 +49,7 @@ export default function Dashboard() {
   };
   return (
     <>
-      <div className="selectedUser">Hello {user.name}</div>
+      <User />
       <p className="bold center">Siste 10 øvelser</p>
       <ul className="card">{excercises()}</ul>
       <p className="bold center">Siste treningsøkter</p>

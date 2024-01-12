@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { BASE_URL } from "../../lib/constants";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import "./Excercises.scss";
-import { getUser } from "../../lib/utils";
+import User from "../../components/User/User";
 
 export default function Excercises() {
   const [excercises, setExcercises] = useState([]);
-  const user = getUser();
   useEffect(() => {
     fetch(`${BASE_URL}/excercises/`)
       .then((response) => response.json())
@@ -31,8 +30,7 @@ export default function Excercises() {
 
   return (
     <>
-      <div className="selectedUser">Hello {user.name}</div>
-
+      <User />
       <div>{seeExcercises()}</div>
     </>
   );

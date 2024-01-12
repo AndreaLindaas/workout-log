@@ -6,3 +6,7 @@ export function getUser() {
 
   return null;
 }
+
+export function logout() {
+  localStorage.removeItem("user");
+}

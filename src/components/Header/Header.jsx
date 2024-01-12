@@ -3,9 +3,13 @@ import { Drawer, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { logout } from "../../lib/utils";
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width:768px)");
+  const navigate = useNavigate();
 
   const menuClose = () => {
     setMenuOpen(false);
@@ -20,17 +24,25 @@ export default function Header() {
   const closeMenu = () => {
     setMenuOpen(false);
   };
+
+  const logoutUser = () => {
+    logout();
+    navigate("/");
+  };
   const renderMenuItems = () => {
     return (
       <ul className="headerList">
-        <li>
-          <Link to="/">
-            <span>Switch user</span>
-          </Link>
+        <li onClick={logoutUser}>
+          <span>Switch user</span>
         </li>
         <li>
           <Link to="/excercises">
             <span>Excercises</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="#">
+            <span>Workout log</span>
           </Link>
         </li>
         <li>

@@ -13,6 +13,7 @@ import "./RegisterPerformance.scss";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import { getUser } from "../../lib/utils";
+import User from "../../components/User/User";
 export default function RegisterPerformance() {
   const [excercisesSelect, setExcercicesSelect] = useState([]);
   const [selectedExcercise, setSelectedExcercise] = useState(0);
@@ -60,6 +61,7 @@ export default function RegisterPerformance() {
   };
   return (
     <>
+      <User />
       <form onSubmit={submitForm}>
         <FormControl className="form">
           <Select
