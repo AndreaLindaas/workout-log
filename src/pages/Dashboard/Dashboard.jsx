@@ -43,8 +43,8 @@ export default function Dashboard() {
     });
   };
   const excerciseDate = () => {
-    return dates.map((date) => {
-      return <li key={performance.id}>{date.date}</li>;
+    return dates.map((date, i) => {
+      return <li key={date.id || i}>{date.date}</li>;
     });
   };
   return (

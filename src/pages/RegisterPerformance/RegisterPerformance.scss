@@ -1,0 +1,11 @@
+form {
+  text-align: center;
+  .form {
+    width: 270px;
+    margin-bottom: 10px;
+  }
+  .button {
+    background-color: var(--tertiary);
+    color: var(--secondary);
+  }
+}

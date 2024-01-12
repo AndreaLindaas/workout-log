@@ -33,6 +33,16 @@ export default function Header() {
             <span>Excercises</span>
           </Link>
         </li>
+        <li>
+          <Link to="/create">
+            <span>Create Excercice</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="/register">
+            <span>Register performance</span>
+          </Link>
+        </li>
       </ul>
     );
   };

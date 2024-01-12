@@ -1,12 +1,12 @@
 .menuIcon {
   background-color: var(--tertiary);
-  color: #fff;
+  color: var(--secondary);
   text-align: right;
   padding: 20px;
 }
 ul.headerList {
   background-color: var(--tertiary);
-  color: #fff;
+  color: var(--secondary);
   padding: 20px;
   text-align: right;
   li {
@@ -14,7 +14,7 @@ ul.headerList {
   }
 
   a {
-    color: #fff;
+    color: var(--secondary);
     text-decoration: none;
   }
 }
