@@ -12,23 +12,38 @@ import { BASE_URL } from "../../lib/constants";
 import "./RegisterPerformance.scss";
 import { useEffect, useState } from "react";
 import moment from "moment";
+import { getUser } from "../../lib/utils";
 export default function RegisterPerformance() {
   const [excercisesSelect, setExcercicesSelect] = useState([]);
+  const [selectedExcercise, setSelectedExcercise] = useState(0);
+  const [datePreview, setDatePreview] = useState(moment());
+
   const submitForm = (event) => {
     event.preventDefault();
+    const { weight, reps, sets } = event.target.elements;
+    const weightResult = weight.value;
+    const repsResult = reps.value;
+    const setsResult = sets.value;
+    const date = moment(datePreview).valueOf() / 1000;
+    const user = getUser();
+
+    fetch(`${BASE_URL}/performances/performance/addPerformance/?userId=${user.id}&excerciseId=${selectedExcercise}&kg=${weightResult}&reps=${repsResult}&sets=${setsResult}&date=${date}
+    `)
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+      });
   };
 
   useEffect(() => {
     fetch(`${BASE_URL}/excercises/`)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         setExcercicesSelect(result);
       });
   }, []);
   const selectExcercises = () => {
     return excercisesSelect.map((excercise) => {
-      console.log("bla", excercise);
       return (
         <MenuItem value={excercise.id} key={excercise.id}>
           {excercise.name}
@@ -36,15 +51,24 @@ export default function RegisterPerformance() {
       );
     });
   };
+
+  const excerciseSelected = (event) => {
+    setSelectedExcercise(event.target.value);
+  };
+  const dateDescription = (date) => {
+    setDatePreview(date);
+  };
   return (
     <>
       <form onSubmit={submitForm}>
         <FormControl className="form">
           <Select
+            onChange={excerciseSelected}
+            value={selectedExcercise}
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             variant="filled"
-            name="Excercise"
+            name="excercise"
           >
             {selectExcercises()}
           </Select>
@@ -99,11 +123,12 @@ export default function RegisterPerformance() {
 
         <div>
           <DatePicker
-            defaultValue={moment()}
+            value={datePreview}
             required
             className="form"
             format="DD.MM.YYYY"
             disableFuture
+            onChange={dateDescription}
           />
         </div>
 

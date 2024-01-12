@@ -27,7 +27,6 @@ export default function Dashboard() {
     fetch(`${BASE_URL}/performances/dates/?userId=${params.id}`)
       .then((response) => response.json())
       .then((result) => {
-        console.log("iujhijh", result);
         setDates(result);
       });
   }, []);
