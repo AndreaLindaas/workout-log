@@ -7,6 +7,8 @@ import Footer from "./components/Footer/Footer";
 import Excercises from "./pages/Excercises/Excercises";
 import RegisterPerformance from "./pages/RegisterPerformance/RegisterPerformance";
 import CreateExcercise from "./pages/CreateExcercise/CreateExcercise";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 function App() {
   return (
     <>
@@ -18,8 +20,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/dashboard/:id" element={<Dashboard />} />
             <Route path="/excercises" element={<Excercises />} />
-            <Route path="/register" element={<RegisterPerformance />} />
+            <Route
+              path="/register-performance"
+              element={<RegisterPerformance />}
+            />
             <Route path="/create" element={<CreateExcercise />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </main>
         <Footer />

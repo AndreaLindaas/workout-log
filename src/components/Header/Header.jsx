@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width:768px)");
+  const isUserSelected = localStorage.getItem("user");
   const navigate = useNavigate();
 
   const menuClose = () => {
@@ -58,6 +59,7 @@ export default function Header() {
       </ul>
     );
   };
+
   if (!isDesktop) {
     return (
       <>
@@ -76,6 +78,8 @@ export default function Header() {
       </>
     );
   } else {
-    return <>{renderMenuItems()}</>;
+    if (isUserSelected) {
+      return <>{renderMenuItems()}</>;
+    }
   }
 }
