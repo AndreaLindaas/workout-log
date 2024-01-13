@@ -14,10 +14,13 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import { getUser } from "../../lib/utils";
 import User from "../../components/User/User";
+import PocketBase from "pocketbase";
+
 export default function RegisterPerformance() {
   const [excercisesSelect, setExcercicesSelect] = useState([]);
-  const [selectedExcercise, setSelectedExcercise] = useState(0);
+  const [selectedExcercise, setSelectedExcercise] = useState();
   const [datePreview, setDatePreview] = useState(moment());
+  const pb = new PocketBase("https://trening.pockethost.io");
 
   const submitForm = (event) => {
     event.preventDefault();
@@ -32,16 +35,17 @@ export default function RegisterPerformance() {
     `)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        console.log("lls", result);
       });
   };
-
+  const fetchExcercises = async () => {
+    const records = await pb.collection("excercises").getFullList({
+      sort: "name",
+    });
+    setExcercicesSelect(records);
+  };
   useEffect(() => {
-    fetch(`${BASE_URL}/excercises/`)
-      .then((response) => response.json())
-      .then((result) => {
-        setExcercicesSelect(result);
-      });
+    fetchExcercises();
   }, []);
   const selectExcercises = () => {
     return excercisesSelect.map((excercise) => {
@@ -59,6 +63,11 @@ export default function RegisterPerformance() {
   const dateDescription = (date) => {
     setDatePreview(date);
   };
+
+  if (excercisesSelect.length === 0) {
+    return <>Loading</>;
+  }
+
   return (
     <>
       <User />

@@ -52,7 +52,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link to="/register">
+          <Link to="/register-performance">
             <span>Register performance</span>
           </Link>
         </li>

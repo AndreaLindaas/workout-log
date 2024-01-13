@@ -3,15 +3,20 @@ import { BASE_URL } from "../../lib/constants";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import "./Excercises.scss";
 import User from "../../components/User/User";
+import PocketBase from "pocketbase";
 
 export default function Excercises() {
   const [excercises, setExcercises] = useState([]);
+  const pb = new PocketBase("https://trening.pockethost.io");
+
+  const fetchExcercises = async () => {
+    const records = await pb.collection("excercises").getFullList({
+      sort: "name",
+    });
+    setExcercises(records);
+  };
   useEffect(() => {
-    fetch(`${BASE_URL}/excercises/`)
-      .then((response) => response.json())
-      .then((result) => {
-        setExcercises(result);
-      });
+    fetchExcercises();
   }, []);
   const seeExcercises = () => {
     return excercises.map((excercice) => {
