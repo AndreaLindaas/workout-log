@@ -18,7 +18,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard/:id" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/excercises" element={<Excercises />} />
             <Route
               path="/register-performance"

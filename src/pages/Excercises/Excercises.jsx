@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../lib/constants";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import "./Excercises.scss";
-import User from "../../components/User/User";
 import PocketBase from "pocketbase";
 
 export default function Excercises() {
@@ -15,6 +13,7 @@ export default function Excercises() {
     });
     setExcercises(records);
   };
+
   useEffect(() => {
     fetchExcercises();
   }, []);
@@ -35,7 +34,6 @@ export default function Excercises() {
 
   return (
     <>
-      <User />
       <div>{seeExcercises()}</div>
     </>
   );

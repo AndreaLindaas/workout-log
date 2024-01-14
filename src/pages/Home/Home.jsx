@@ -1,43 +1,29 @@
-import { useEffect, useState } from "react";
-import { BASE_URL } from "../../lib/constants";
+import { useEffect } from "react";
+
 import "./Home.scss";
-import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch(`${BASE_URL}/users/`)
-      .then((response) => response.json())
-      .then((result) => {
-        setUsers(result);
-      });
-  }, []);
-
-  const saveUserAndRedirect = (event) => {
-    const user = users.filter((user) => user.id === event.target.dataset.id);
-
-    localStorage.setItem("user", JSON.stringify(user[0]));
-    navigate("/dashboard/" + event.target.dataset.id);
-  };
-
-  const showUsers = () => {
-    return users.map((user) => (
-      <div
-        key={user.id}
-        data-id={user.id}
-        onClick={saveUserAndRedirect}
-        className="users"
-      >
-        {user.name}
-      </div>
-    ));
-  };
+  useEffect(() => {}, []);
 
   return (
     <>
-      <div>{showUsers()}</div>
+      <h1>Welcome to your new excercise log</h1>
+      <div>
+        Keeping track of your workouts is a powerful tool on your fitness
+        journey.
+      </div>
+      <ol>
+        <li>
+          Record Your Workouts: Log each exercise, the number of sets and reps.
+        </li>
+        <li>Track Your Progress.</li>
+        <li>
+          Stay Consistent: Consistency is key! Make a habit of updating your
+          exercise log regularly to stay on top of your fitness game.
+        </li>
+      </ol>
+      <div>Go to you dashboard</div>
+      <div>Not a member? Make an account here!</div>
     </>
   );
 }

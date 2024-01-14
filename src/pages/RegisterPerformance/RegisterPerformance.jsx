@@ -6,6 +6,7 @@ import {
   Button,
   Select,
   MenuItem,
+  CircularProgress,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { BASE_URL } from "../../lib/constants";
@@ -17,38 +18,41 @@ import User from "../../components/User/User";
 import PocketBase from "pocketbase";
 
 export default function RegisterPerformance() {
-  const [excercisesSelect, setExcercicesSelect] = useState([]);
+  const [excercises, setExcercices] = useState([]);
   const [selectedExcercise, setSelectedExcercise] = useState();
   const [datePreview, setDatePreview] = useState(moment());
   const pb = new PocketBase("https://trening.pockethost.io");
-
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
     const { weight, reps, sets } = event.target.elements;
     const weightResult = weight.value;
     const repsResult = reps.value;
     const setsResult = sets.value;
     const date = moment(datePreview).valueOf() / 1000;
-    const user = getUser();
 
-    fetch(`${BASE_URL}/performances/performance/addPerformance/?userId=${user.id}&excerciseId=${selectedExcercise}&kg=${weightResult}&reps=${repsResult}&sets=${setsResult}&date=${date}
-    `)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log("lls", result);
-      });
+    const data = {
+      excerciseId: selectedExcercise,
+
+      kg: weightResult,
+      reps: repsResult,
+      sets: setsResult,
+      date: date,
+    };
+    const record = await pb.collection("performances").create(data);
+    console.log(record);
   };
   const fetchExcercises = async () => {
     const records = await pb.collection("excercises").getFullList({
       sort: "name",
     });
-    setExcercicesSelect(records);
+    setExcercices(records);
+    setSelectedExcercise(records[0].id);
   };
   useEffect(() => {
     fetchExcercises();
   }, []);
   const selectExcercises = () => {
-    return excercisesSelect.map((excercise) => {
+    return excercises.map((excercise) => {
       return (
         <MenuItem value={excercise.id} key={excercise.id}>
           {excercise.name}
@@ -64,10 +68,13 @@ export default function RegisterPerformance() {
     setDatePreview(date);
   };
 
-  if (excercisesSelect.length === 0) {
-    return <>Loading</>;
+  if (excercises.length === 0) {
+    return (
+      <>
+        <CircularProgress />
+      </>
+    );
   }
-
   return (
     <>
       <User />
