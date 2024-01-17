@@ -60,7 +60,13 @@ export default function Excercise() {
     <>
       <h1>{excercise.name}</h1>
 
-      <ul className="performances">{showPerformances()}</ul>
+      {performances.length > 0 && (
+        <ul className="performances">{showPerformances()}</ul>
+      )}
+
+      {performances.length === 0 && (
+        <p className="center">You have not practiced this exercise yet</p>
+      )}
     </>
   );
 }

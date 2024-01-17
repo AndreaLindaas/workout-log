@@ -2,7 +2,7 @@ import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import User from "../../components/User/User";
 import PocketBase from "pocketbase";
-
+import moment from "moment";
 export default function Dashboard() {
   const [performances, setPerformances] = useState([]);
   const pb = new PocketBase("https://trening.pockethost.io");
@@ -35,15 +35,19 @@ export default function Dashboard() {
   };
   const showPerformanceDates = () => {
     return performances.map((date, i) => {
-      return <li key={date.id || i}>{date.date}</li>;
+      return (
+        <li key={date.id || i}>
+          {moment(date.date).format("DD.MM.YYYY").toLocaleString()}
+        </li>
+      );
     });
   };
   return (
     <>
       <User />
-      <p className="bold center">Siste 10 øvelser</p>
+      <p className="bold center">Last Excercises</p>
       <ul className="card">{showPerformances()}</ul>
-      <p className="bold center">Siste treningsøkter</p>
+      <p className="bold center">Last Performances</p>
       <ul className="card">{showPerformanceDates()}</ul>
     </>
   );

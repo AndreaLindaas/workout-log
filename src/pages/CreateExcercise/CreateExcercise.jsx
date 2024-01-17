@@ -14,7 +14,6 @@ export default function CreateExcercise() {
         <div>
           <FormControl variant="filled" className="form">
             <FilledInput
-              id="filled-adornment-weight"
               endAdornment={<InputAdornment position="end"> </InputAdornment>}
               aria-describedby="filled-weight-helper-text"
               inputProps={{
