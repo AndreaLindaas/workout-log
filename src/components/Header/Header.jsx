@@ -35,6 +35,11 @@ export default function Header() {
         {isUserLoggedIn() && (
           <>
             <li>
+              <Link to="/dashboard">
+                <span>Dashboard</span>
+              </Link>
+            </li>
+            <li>
               <Link to="/excercises">
                 <span>Excercises</span>
               </Link>
@@ -67,7 +72,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to="#">
+              <Link to="/register">
                 <span>Sign up</span>
               </Link>
             </li>

@@ -28,11 +28,13 @@ export default function RegisterPerformance() {
     const weightResult = weight.value;
     const repsResult = reps.value;
     const setsResult = sets.value;
-    const date = moment(datePreview).valueOf() / 1000;
+    const date = datePreview.toISOString();
+
+    const user = getUser();
 
     const data = {
-      excerciseId: selectedExcercise,
-
+      excercise: selectedExcercise,
+      userId: user.id,
       kg: weightResult,
       reps: repsResult,
       sets: setsResult,

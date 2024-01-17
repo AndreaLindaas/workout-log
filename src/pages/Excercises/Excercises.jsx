@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import "./Excercises.scss";
 import PocketBase from "pocketbase";
+import { Link } from "react-router-dom";
 
 export default function Excercises() {
   const [excercises, setExcercises] = useState([]);
@@ -17,17 +18,26 @@ export default function Excercises() {
   useEffect(() => {
     fetchExcercises();
   }, []);
+
   const seeExcercises = () => {
     return excercises.map((excercice) => {
+      console.log(excercice);
       return (
-        <Card key={excercice.id} sx={{ maxWidth: 345 }} className="muiCard">
-          <CardMedia sx={{ height: 140 }} image="./assets/media/trening.jpg" />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {excercice.name}
-            </Typography>
-          </CardContent>
-        </Card>
+        <>
+          <Card key={excercice.id} sx={{ maxWidth: 345 }} className="muiCard">
+            <CardMedia
+              sx={{ height: 140 }}
+              image="./assets/media/trening.jpg"
+            />
+            <Link to={`/excercise/${excercice.id}`}>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {excercice.name}
+                </Typography>
+              </CardContent>
+            </Link>
+          </Card>
+        </>
       );
     });
   };
