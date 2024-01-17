@@ -2,14 +2,12 @@ import "./Header.scss";
 import { Drawer, useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
-import { logout } from "../../lib/utils";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { isUserLoggedIn, logout } from "../../lib/utils";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width:768px)");
-  const isUserSelected = localStorage.getItem("user");
   const navigate = useNavigate();
 
   const menuClose = () => {
@@ -30,32 +28,56 @@ export default function Header() {
     logout();
     navigate("/");
   };
+
   const renderMenuItems = () => {
     return (
       <ul className="headerList">
-        <li onClick={logoutUser}>
-          <span>Switch user</span>
-        </li>
-        <li>
-          <Link to="/excercises">
-            <span>Excercises</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="#">
-            <span>Workout log</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/create">
-            <span>Create Excercice</span>
-          </Link>
-        </li>
-        <li>
-          <Link to="/register">
-            <span>Register performance</span>
-          </Link>
-        </li>
+        {isUserLoggedIn() && (
+          <>
+            <li>
+              <Link to="/dashboard">
+                <span>Dashboard</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/excercises">
+                <span>Excercises</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="#">
+                <span>Workout log</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/create">
+                <span>Create Excercice</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/register-performance">
+                <span>Register performance</span>
+              </Link>
+            </li>
+            <li onClick={logoutUser}>
+              <span>Logout</span>
+            </li>
+          </>
+        )}
+        {!isUserLoggedIn() && (
+          <>
+            <li>
+              <Link to="/login">
+                <span>Login</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/register">
+                <span>Sign up</span>
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     );
   };
@@ -78,8 +100,6 @@ export default function Header() {
       </>
     );
   } else {
-    if (isUserSelected) {
-      return <>{renderMenuItems()}</>;
-    }
+    return <>{renderMenuItems()}</>;
   }
 }

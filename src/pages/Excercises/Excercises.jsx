@@ -1,36 +1,49 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../../lib/constants";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import "./Excercises.scss";
-import User from "../../components/User/User";
+import PocketBase from "pocketbase";
+import { Link } from "react-router-dom";
 
 export default function Excercises() {
   const [excercises, setExcercises] = useState([]);
+  const pb = new PocketBase("https://trening.pockethost.io");
+
+  const fetchExcercises = async () => {
+    const records = await pb.collection("excercises").getFullList({
+      sort: "name",
+    });
+    setExcercises(records);
+  };
+
   useEffect(() => {
-    fetch(`${BASE_URL}/excercises/`)
-      .then((response) => response.json())
-      .then((result) => {
-        setExcercises(result);
-      });
+    fetchExcercises();
   }, []);
+
   const seeExcercises = () => {
     return excercises.map((excercice) => {
+      console.log(excercice);
       return (
-        <Card key={excercice.id} sx={{ maxWidth: 345 }} className="muiCard">
-          <CardMedia sx={{ height: 140 }} image="./assets/media/trening.jpg" />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {excercice.name}
-            </Typography>
-          </CardContent>
-        </Card>
+        <>
+          <Card key={excercice.id} sx={{ maxWidth: 345 }} className="muiCard">
+            <CardMedia
+              sx={{ height: 140 }}
+              image="./assets/media/trening.jpg"
+            />
+            <Link to={`/excercise/${excercice.id}`}>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {excercice.name}
+                </Typography>
+              </CardContent>
+            </Link>
+          </Card>
+        </>
       );
     });
   };
 
   return (
     <>
-      <User />
       <div>{seeExcercises()}</div>
     </>
   );
