@@ -1,49 +1,40 @@
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { BASE_URL } from "../../lib/constants";
 import User from "../../components/User/User";
+import PocketBase from "pocketbase";
+
 export default function Dashboard() {
-  const params = useParams();
-
   const [performances, setPerformances] = useState([]);
-  const [dates, setDates] = useState([]);
+  const pb = new PocketBase("https://trening.pockethost.io");
+
+  const seePerformances = async () => {
+    // const records = await pb.collection("performances").getList(1, 10, {
+    //   sort: "-created",
+    //   expand: "excercise",
+    // });
+    const records = await pb.collection("performances").getFullList({
+      sort: "-created",
+      expand: "excercise",
+    });
+    console.log(records);
+    setPerformances(records);
+  };
   useEffect(() => {
-    fetch(`${BASE_URL}/users/user/?id=${params.id}`)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      });
+    seePerformances();
   }, []);
 
-  useEffect(() => {
-    fetch(`${BASE_URL}/performances/?userId=${params.id}&max=10`)
-      .then((response) => response.json())
-      .then((result) => {
-        setPerformances(result);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch(`${BASE_URL}/performances/dates/?userId=${params.id}`)
-      .then((response) => response.json())
-      .then((result) => {
-        setDates(result);
-      });
-  }, []);
-
-  const excercises = () => {
+  const showPerformances = () => {
     return performances.map((performance) => {
       return (
         <li key={performance.id}>
-          <span>{performance.excerciseName}</span>
+          <span>{performance.expand.excercise.name}</span>
           <span>{performance.kg} kg</span>
         </li>
       );
     });
   };
-  const excerciseDate = () => {
-    return dates.map((date, i) => {
+  const showPerformanceDates = () => {
+    return performances.map((date, i) => {
       return <li key={date.id || i}>{date.date}</li>;
     });
   };
@@ -51,9 +42,9 @@ export default function Dashboard() {
     <>
       <User />
       <p className="bold center">Siste 10 øvelser</p>
-      <ul className="card">{excercises()}</ul>
+      <ul className="card">{showPerformances()}</ul>
       <p className="bold center">Siste treningsøkter</p>
-      <ul className="card">{excerciseDate()}</ul>
+      <ul className="card">{showPerformanceDates()}</ul>
     </>
   );
 }

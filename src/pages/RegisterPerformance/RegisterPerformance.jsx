@@ -6,6 +6,7 @@ import {
   Button,
   Select,
   MenuItem,
+  CircularProgress,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { BASE_URL } from "../../lib/constants";
@@ -14,37 +15,46 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import { getUser } from "../../lib/utils";
 import User from "../../components/User/User";
-export default function RegisterPerformance() {
-  const [excercisesSelect, setExcercicesSelect] = useState([]);
-  const [selectedExcercise, setSelectedExcercise] = useState(0);
-  const [datePreview, setDatePreview] = useState(moment());
+import PocketBase from "pocketbase";
 
-  const submitForm = (event) => {
+export default function RegisterPerformance() {
+  const [excercises, setExcercices] = useState([]);
+  const [selectedExcercise, setSelectedExcercise] = useState();
+  const [datePreview, setDatePreview] = useState(moment());
+  const pb = new PocketBase("https://trening.pockethost.io");
+  const submitForm = async (event) => {
     event.preventDefault();
     const { weight, reps, sets } = event.target.elements;
     const weightResult = weight.value;
     const repsResult = reps.value;
     const setsResult = sets.value;
-    const date = moment(datePreview).valueOf() / 1000;
+    const date = datePreview.toISOString();
+
     const user = getUser();
 
-    fetch(`${BASE_URL}/performances/performance/addPerformance/?userId=${user.id}&excerciseId=${selectedExcercise}&kg=${weightResult}&reps=${repsResult}&sets=${setsResult}&date=${date}
-    `)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      });
+    const data = {
+      excercise: selectedExcercise,
+      userId: user.id,
+      kg: weightResult,
+      reps: repsResult,
+      sets: setsResult,
+      date: date,
+    };
+    const record = await pb.collection("performances").create(data);
+    console.log(record);
   };
-
+  const fetchExcercises = async () => {
+    const records = await pb.collection("excercises").getFullList({
+      sort: "name",
+    });
+    setExcercices(records);
+    setSelectedExcercise(records[0].id);
+  };
   useEffect(() => {
-    fetch(`${BASE_URL}/excercises/`)
-      .then((response) => response.json())
-      .then((result) => {
-        setExcercicesSelect(result);
-      });
+    fetchExcercises();
   }, []);
   const selectExcercises = () => {
-    return excercisesSelect.map((excercise) => {
+    return excercises.map((excercise) => {
       return (
         <MenuItem value={excercise.id} key={excercise.id}>
           {excercise.name}
@@ -59,6 +69,14 @@ export default function RegisterPerformance() {
   const dateDescription = (date) => {
     setDatePreview(date);
   };
+
+  if (excercises.length === 0) {
+    return (
+      <>
+        <CircularProgress />
+      </>
+    );
+  }
   return (
     <>
       <User />

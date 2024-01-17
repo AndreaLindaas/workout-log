@@ -4,22 +4,35 @@ import {
   InputAdornment,
   FormHelperText,
   Button,
+  CircularProgress,
 } from "@mui/material";
+import { useState } from "react";
 import PocketBase from "pocketbase";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
   const pb = new PocketBase("https://trening.pockethost.io");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const submitLoginForm = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const { email, password } = event.target.elements;
     const emailValue = email.value;
     const passwordValue = password.value;
 
-    const authData = await pb
-      .collection("users")
-      .authWithPassword(emailValue, passwordValue);
+    try {
+      const authData = await pb
+        .collection("users")
+        .authWithPassword(emailValue, passwordValue);
 
-    console.log(pb.authStore);
+      if (authData.token) {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      //Ugyldig brukernavn eller passord. vis feilmelding
+      setIsLoading(false);
+    }
   };
   return (
     <form onSubmit={submitLoginForm}>
@@ -55,9 +68,13 @@ export default function Login() {
           </FormHelperText>
         </FormControl>
       </div>
-      <Button type="submit" variant="contained" className="button">
-        Login
-      </Button>
+
+      {!isLoading && (
+        <Button type="submit" variant="contained" className="button">
+          Login
+        </Button>
+      )}
+      {isLoading && <CircularProgress />}
     </form>
   );
 }

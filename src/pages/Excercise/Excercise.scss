@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+}
+ul.performances {
+  margin: 0 auto;
+  max-width: 300px;
+  li {
+    background-color: var(--tertiary);
+    color: var(--secondary);
+    margin: 10px;
+    max-width: 300px;
+    padding: 10px 20px 20px 20px;
+    .values {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      span {
+        margin-top: 10px;
+      }
+    }
+  }
+}

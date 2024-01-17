@@ -9,6 +9,7 @@ import RegisterPerformance from "./pages/RegisterPerformance/RegisterPerformance
 import CreateExcercise from "./pages/CreateExcercise/CreateExcercise";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Excercise from "./pages/Excercise/Excercise";
 function App() {
   return (
     <>
@@ -18,8 +19,9 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/dashboard/:id" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/excercises" element={<Excercises />} />
+            <Route path="/excercise/:id" element={<Excercise />} />
             <Route
               path="/register-performance"
               element={<RegisterPerformance />}
