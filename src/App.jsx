@@ -10,6 +10,8 @@ import CreateExcercise from "./pages/CreateExcercise/CreateExcercise";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Excercise from "./pages/Excercise/Excercise";
+import WorkoutLog from "./pages/WorkoutLog/WorkoutLog";
+import WorkoutLogDay from "./pages/WorkoutLogDay/WorkoutLogDay";
 function App() {
   return (
     <>
@@ -22,6 +24,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/excercises" element={<Excercises />} />
             <Route path="/excercise/:id" element={<Excercise />} />
+            <Route path="/workout-log" element={<WorkoutLog />} />
+            <Route path="/workout-log/:date" element={<WorkoutLogDay />} />
             <Route
               path="/register-performance"
               element={<RegisterPerformance />}

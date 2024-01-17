@@ -6,11 +6,19 @@ import {
   Button,
 } from "@mui/material";
 import User from "../../components/User/User";
+// import PocketBase from "pocketbase";
+import { useEffect } from "react";
+
 export default function CreateExcercise() {
+  // const pb = new PocketBase("https://trening.pockethost.io");
+  const submitExcerciseForm = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <User />
-      <form action="">
+      <form onSubmit={submitExcerciseForm}>
         <div>
           <FormControl variant="filled" className="form">
             <FilledInput
@@ -25,7 +33,7 @@ export default function CreateExcercise() {
             </FormHelperText>
           </FormControl>
         </div>
-        <Button variant="contained" className="button">
+        <Button type="submit" variant="contained" className="button">
           Save
         </Button>
       </form>

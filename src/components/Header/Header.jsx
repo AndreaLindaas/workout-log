@@ -45,7 +45,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link to="#">
+              <Link to="workout-log">
                 <span>Workout log</span>
               </Link>
             </li>

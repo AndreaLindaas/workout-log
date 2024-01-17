@@ -12,12 +12,11 @@ export default function Dashboard() {
     //   sort: "-created",
     //   expand: "excercise",
     // });
-    const records = await pb.collection("performances").getFullList({
-      sort: "-created",
+    const records = await pb.collection("performances").getList(1, 10, {
+      sort: "date",
       expand: "excercise",
     });
-    console.log(records);
-    setPerformances(records);
+    setPerformances(records.items);
   };
   useEffect(() => {
     seePerformances();
@@ -33,13 +32,18 @@ export default function Dashboard() {
       );
     });
   };
+
   const showPerformanceDates = () => {
-    return performances.map((date, i) => {
-      return (
-        <li key={date.id || i}>
-          {moment(date.date).format("DD.MM.YYYY").toLocaleString()}
-        </li>
-      );
+    const uniqueDates = Array.from(
+      new Set(
+        performances.map((p) =>
+          moment(p.date).format("DD.MM.YYYY").toLocaleString()
+        )
+      )
+    );
+
+    return uniqueDates.map((date, i) => {
+      return <li key={i}>{date}</li>;
     });
   };
   return (
