@@ -17,17 +17,14 @@ export default function WorkoutLog() {
   }, []);
   const showPerformanceDates = () => {
     const uniqueDates = Array.from(
-      new Set(
-        performances.map((p) =>
-          moment(p.date).format("DD.MM.YYYY").toLocaleString()
-        )
-      )
+      new Set(performances.map((p) => moment(p.date).toISOString()))
     );
-
     return uniqueDates.map((date, i) => {
+      console.log(date);
+
       return (
         <>
-          <Link to="/workout-log/:date">
+          <Link to={`/workout-log/${date}`}>
             <li key={i}>
               {date} <ArrowForwardIcon />
             </li>

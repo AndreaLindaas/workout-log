@@ -31,54 +31,56 @@ export default function Header() {
 
   const renderMenuItems = () => {
     return (
-      <ul className="headerList">
-        {isUserLoggedIn() && (
-          <>
-            <li>
-              <Link to="/dashboard">
-                <span>Dashboard</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/excercises">
-                <span>Excercises</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="workout-log">
-                <span>Workout log</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/create">
-                <span>Create Excercice</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/register-performance">
-                <span>Register performance</span>
-              </Link>
-            </li>
-            <li onClick={logoutUser}>
-              <span>Logout</span>
-            </li>
-          </>
-        )}
-        {!isUserLoggedIn() && (
-          <>
-            <li>
-              <Link to="/login">
-                <span>Login</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/register">
-                <span>Sign up</span>
-              </Link>
-            </li>
-          </>
-        )}
-      </ul>
+      <>
+        <ul className="headerList">
+          {isUserLoggedIn() && (
+            <>
+              <li>
+                <Link to="/dashboard">
+                  <span>Dashboard</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/excercises">
+                  <span>Excercises</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="workout-log">
+                  <span>Workout log</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/create">
+                  <span>Create Excercice</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/register-performance">
+                  <span>Register performance</span>
+                </Link>
+              </li>
+              <li onClick={logoutUser}>
+                <span>Logout</span>
+              </li>
+            </>
+          )}
+          {!isUserLoggedIn() && (
+            <>
+              <li>
+                <Link to="/login">
+                  <span>Login</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/register">
+                  <span>Sign up</span>
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </>
     );
   };
 

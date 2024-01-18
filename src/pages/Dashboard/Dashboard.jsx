@@ -8,10 +8,6 @@ export default function Dashboard() {
   const pb = new PocketBase("https://trening.pockethost.io");
 
   const seePerformances = async () => {
-    // const records = await pb.collection("performances").getList(1, 10, {
-    //   sort: "-created",
-    //   expand: "excercise",
-    // });
     const records = await pb.collection("performances").getList(1, 10, {
       sort: "date",
       expand: "excercise",

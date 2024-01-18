@@ -9,7 +9,6 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import { BASE_URL } from "../../lib/constants";
 import "./RegisterPerformance.scss";
 import { useEffect, useState } from "react";
 import moment from "moment";
@@ -22,13 +21,19 @@ export default function RegisterPerformance() {
   const [selectedExcercise, setSelectedExcercise] = useState();
   const [datePreview, setDatePreview] = useState(moment());
   const pb = new PocketBase("https://trening.pockethost.io");
+
   const submitForm = async (event) => {
     event.preventDefault();
     const { weight, reps, sets } = event.target.elements;
     const weightResult = weight.value;
     const repsResult = reps.value;
     const setsResult = sets.value;
-    const date = datePreview.toISOString();
+    const date = datePreview
+      .set("hours", 12)
+      .set("minutes", 0)
+      .set("seconds", 0)
+      .set("milliseconds", 0)
+      .toISOString();
 
     const user = getUser();
 
@@ -40,8 +45,7 @@ export default function RegisterPerformance() {
       sets: setsResult,
       date: date,
     };
-    const record = await pb.collection("performances").create(data);
-    console.log(record);
+    await pb.collection("performances").create(data);
   };
   const fetchExcercises = async () => {
     const records = await pb.collection("excercises").getFullList({
