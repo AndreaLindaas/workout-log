@@ -9,7 +9,7 @@ export default function Dashboard() {
 
   const seePerformances = async () => {
     const records = await pb.collection("performances").getList(1, 10, {
-      sort: "date",
+      sort: "-date",
       expand: "excercise",
     });
     setPerformances(records.items);

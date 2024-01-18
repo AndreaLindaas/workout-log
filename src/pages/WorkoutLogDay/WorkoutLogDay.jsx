@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import PocketBase from "pocketbase";
 import { useEffect, useState } from "react";
 import "./WorkoutLogDay.scss";
+import User from "../../components/User/User";
 export default function WorkoutLogDay() {
   const pb = new PocketBase("https://trening.pockethost.io");
   const params = useParams();
@@ -24,18 +25,21 @@ export default function WorkoutLogDay() {
       console.log(performance);
       return (
         <li key={performance.id}>
-          <span> {performance.expand.excercise.name}:</span>{" "}
-          <span>{performance.kg} Kg</span>
-          <span>{performance.reps} Reps</span>
-          <span>{performance.sets} Set</span>
+          <span className="center"> {performance.expand.excercise.name}:</span>
+          <span className="values">
+            <span>{performance.kg} Kg</span>
+            <span>{performance.reps} Reps</span>
+            <span>{performance.sets} Set</span>
+          </span>
         </li>
       );
     });
   };
   return (
     <>
+      <User />
       <h1>{params.date}</h1>
-      <ul className="card">{showData()}</ul>
+      <ul className="performances">{showData()}</ul>
     </>
   );
 }

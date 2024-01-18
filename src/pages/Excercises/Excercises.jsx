@@ -3,6 +3,7 @@ import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import "./Excercises.scss";
 import PocketBase from "pocketbase";
 import { Link } from "react-router-dom";
+import User from "../../components/User/User";
 
 export default function Excercises() {
   const [excercises, setExcercises] = useState([]);
@@ -44,6 +45,7 @@ export default function Excercises() {
 
   return (
     <>
+      <User />
       <div>{seeExcercises()}</div>
     </>
   );

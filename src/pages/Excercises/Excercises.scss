@@ -2,4 +2,8 @@
   background-color: var(--tertiary);
   color: var(--secondary);
   margin: 20px auto;
+  a {
+    color: var(--secondary);
+    text-decoration: none;
+  }
 }
