@@ -15,13 +15,13 @@ import moment from "moment";
 import { getUser } from "../../lib/utils";
 import User from "../../components/User/User";
 import PocketBase from "pocketbase";
-
+import { useNavigate } from "react-router-dom";
 export default function RegisterPerformance() {
   const [excercises, setExcercices] = useState([]);
   const [selectedExcercise, setSelectedExcercise] = useState();
   const [datePreview, setDatePreview] = useState(moment());
   const pb = new PocketBase("https://trening.pockethost.io");
-
+  const navigate = useNavigate();
   const submitForm = async (event) => {
     event.preventDefault();
     const { weight, reps, sets } = event.target.elements;
