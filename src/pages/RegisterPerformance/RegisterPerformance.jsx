@@ -16,6 +16,8 @@ import { getUser } from "../../lib/utils";
 import User from "../../components/User/User";
 import PocketBase from "pocketbase";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 export default function RegisterPerformance() {
   const [excercises, setExcercices] = useState([]);
   const [selectedExcercise, setSelectedExcercise] = useState();
@@ -77,12 +79,21 @@ export default function RegisterPerformance() {
   if (excercises.length === 0) {
     return (
       <>
-        <CircularProgress />
+        <div className="center">
+          <CircularProgress />
+        </div>
       </>
     );
   }
   return (
     <>
+      <Helmet>
+        <title>Workout-log - Register performance</title>
+        <meta
+          name="description"
+          content="Here you can register an performance"
+        />
+      </Helmet>
       <User />
       <form onSubmit={submitForm}>
         <FormControl className="form">

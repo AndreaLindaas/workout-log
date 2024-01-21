@@ -7,30 +7,23 @@ import {
 } from "@mui/material";
 import PocketBase from "pocketbase";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 export default function Register() {
   const pb = new PocketBase("https://trening.pockethost.io");
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [nameValue, setNameValue] = useState("");
-
   const [emailValue, setEmailValue] = useState("");
-
   const [passwordValue, setPasswordValue] = useState("");
-
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+  const [showError, setShowError] = useState(false);
 
-  // const regexEmail =
-  //   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
+  const navigate = useNavigate();
 
   const submitRegisterForm = async (event) => {
     event.preventDefault();
-    console.log("kkkkkkkkkkk");
     setButtonDisabled(true);
-
-    // const { name, email, password, confirmPassword } = event.target.elements;
-    // const emailValue = email.value;
-    // const passwordValue = password.value;
-    // const nameValue = name.value;
-    // const passwordConfirmValue = confirmPassword.value;
 
     const data = {
       email: emailValue,
@@ -39,10 +32,12 @@ export default function Register() {
       name: nameValue,
     };
     try {
-      const record = await pb.collection("users").create(data);
-      console.log(record);
+      await pb.collection("users").create(data);
+      navigate("/login");
     } catch (error) {
       console.log(error);
+      setShowError(true);
+
       setButtonDisabled(false);
     }
   };
@@ -79,87 +74,111 @@ export default function Register() {
       setButtonDisabled(true);
       return;
     }
+    if (passwordValue.length < 8) {
+      setButtonDisabled(true);
+      return;
+    }
+    if (confirmPasswordValue !== passwordValue) {
+      setButtonDisabled(true);
+      return;
+    }
     setButtonDisabled(false);
-  }, [nameValue, emailValue]);
+  }, [nameValue, emailValue, passwordValue, confirmPasswordValue]);
 
   return (
-    <form onSubmit={submitRegisterForm}>
-      <div>
-        <FormControl variant="filled" className="form">
-          <FilledInput
-            name="name"
-            value={nameValue}
-            type="text"
-            onChange={nameChanged}
-            endAdornment={<InputAdornment position="end"></InputAdornment>}
-            aria-describedby="filled-weight-helper-text"
-            inputProps={{
-              "aria-label": "name",
-            }}
-          />
-          <FormHelperText id="filled-weight-helper-text">Name </FormHelperText>
-        </FormControl>
-      </div>
-      <div>
-        <FormControl variant="filled" className="form">
-          <FilledInput
-            name="email"
-            value={emailValue}
-            onChange={emailChanged}
-            type="email"
-            endAdornment={<InputAdornment position="end"></InputAdornment>}
-            aria-describedby="filled-weight-helper-text"
-            inputProps={{
-              "aria-label": "email",
-            }}
-          />
-          <FormHelperText id="filled-weight-helper-text">Email</FormHelperText>
-        </FormControl>
-      </div>
-      <div>
-        <FormControl variant="filled" className="form">
-          <FilledInput
-            name="password"
-            value={passwordValue}
-            onChange={passwordChanged}
-            type="password"
-            endAdornment={<InputAdornment position="end"></InputAdornment>}
-            aria-describedby="filled-weight-helper-text"
-            inputProps={{
-              "aria-label": "password",
-            }}
-          />
-          <FormHelperText id="filled-weight-helper-text">
-            Password
-          </FormHelperText>
-        </FormControl>
-      </div>
-      <div>
-        <FormControl variant="filled" className="form">
-          <FilledInput
-            name="confirmPassword"
-            value={confirmPasswordValue}
-            onChange={passwordConfirmChanged}
-            type="password"
-            endAdornment={<InputAdornment position="end"></InputAdornment>}
-            aria-describedby="filled-weight-helper-text"
-            inputProps={{
-              "aria-label": "confirm-password",
-            }}
-          />
-          <FormHelperText id="filled-weight-helper-text">
-            Confirm password
-          </FormHelperText>
-        </FormControl>
-      </div>
-      <Button
-        disabled={buttonDisabled}
-        type="submit"
-        variant="contained"
-        className="button"
-      >
-        Register
-      </Button>
-    </form>
+    <>
+      <Helmet>
+        <title>Workout-log - Register user</title>
+        <meta name="description" content="Here you can register your user" />
+      </Helmet>
+      <form onSubmit={submitRegisterForm}>
+        <div>
+          <FormControl variant="filled" className="form">
+            <FilledInput
+              name="name"
+              value={nameValue}
+              type="text"
+              onChange={nameChanged}
+              endAdornment={<InputAdornment position="end"></InputAdornment>}
+              aria-describedby="filled-weight-helper-text"
+              inputProps={{
+                "aria-label": "name",
+              }}
+            />
+            <FormHelperText id="filled-weight-helper-text">
+              Name{" "}
+            </FormHelperText>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl variant="filled" className="form">
+            <FilledInput
+              name="email"
+              value={emailValue}
+              onChange={emailChanged}
+              type="email"
+              endAdornment={<InputAdornment position="end"></InputAdornment>}
+              aria-describedby="filled-weight-helper-text"
+              inputProps={{
+                "aria-label": "email",
+              }}
+            />
+            <FormHelperText id="filled-weight-helper-text">
+              Email
+            </FormHelperText>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl variant="filled" className="form">
+            <FilledInput
+              name="password"
+              value={passwordValue}
+              onChange={passwordChanged}
+              type="password"
+              endAdornment={<InputAdornment position="end"></InputAdornment>}
+              aria-describedby="filled-weight-helper-text"
+              inputProps={{
+                "aria-label": "password",
+              }}
+            />
+            <FormHelperText id="filled-weight-helper-text">
+              Password
+            </FormHelperText>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl variant="filled" className="form">
+            <FilledInput
+              name="confirmPassword"
+              value={confirmPasswordValue}
+              onChange={passwordConfirmChanged}
+              type="password"
+              endAdornment={<InputAdornment position="end"></InputAdornment>}
+              aria-describedby="filled-weight-helper-text"
+              inputProps={{
+                "aria-label": "confirm-password",
+              }}
+            />
+            <FormHelperText id="filled-weight-helper-text">
+              Confirm password
+            </FormHelperText>
+          </FormControl>
+        </div>
+        {showError && (
+          <div className="center error">
+            Something went wrong when registering user. Please try again.
+          </div>
+        )}
+
+        <Button
+          disabled={buttonDisabled}
+          type="submit"
+          variant="contained"
+          className="button"
+        >
+          Register
+        </Button>
+      </form>
+    </>
   );
 }

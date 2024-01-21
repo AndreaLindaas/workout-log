@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import "./Excercise.scss";
 import { CircularProgress } from "@mui/material";
+import { Helmet } from "react-helmet";
 
 export default function Excercise() {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,6 +59,10 @@ export default function Excercise() {
 
   return (
     <>
+      <Helmet>
+        <title>Workout-log - Excercise</title>
+        <meta name="description" content="Here you can see one excercise" />
+      </Helmet>
       <h1>{excercise.name}</h1>
 
       {performances.length > 0 && (

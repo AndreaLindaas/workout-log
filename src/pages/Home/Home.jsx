@@ -2,12 +2,18 @@ import { useEffect } from "react";
 import { Button } from "@mui/material";
 import "./Home.scss";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 Link;
 export default function Home() {
   useEffect(() => {}, []);
 
   return (
     <>
+      <Helmet>
+        <title>Workout-log - Home</title>
+        <meta name="description" content="Welcome to this workout-log" />
+      </Helmet>
       <div className="container">
         <h1>Welcome to your new excercise log</h1>
         <div>

@@ -4,9 +4,13 @@ import "./Excercises.scss";
 import PocketBase from "pocketbase";
 import { Link } from "react-router-dom";
 import User from "../../components/User/User";
+import { CircularProgress } from "@mui/material";
+import { Helmet } from "react-helmet";
 
 export default function Excercises() {
   const [excercises, setExcercises] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const pb = new PocketBase("https://trening.pockethost.io");
 
   const fetchExcercises = async () => {
@@ -14,6 +18,7 @@ export default function Excercises() {
       sort: "name",
     });
     setExcercises(records);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -22,7 +27,6 @@ export default function Excercises() {
 
   const seeExcercises = () => {
     return excercises.map((excercice) => {
-      console.log(excercice);
       return (
         <>
           <Card key={excercice.id} sx={{ maxWidth: 345 }} className="muiCard">
@@ -42,9 +46,22 @@ export default function Excercises() {
       );
     });
   };
-
+  if (isLoading) {
+    return (
+      <div className="center">
+        <CircularProgress />
+      </div>
+    );
+  }
   return (
     <>
+      <Helmet>
+        <title>Workout-log - Excercises</title>
+        <meta
+          name="description"
+          content="Here you can see the 10 last excercises and dates"
+        />
+      </Helmet>
       <User />
       <div>{seeExcercises()}</div>
     </>

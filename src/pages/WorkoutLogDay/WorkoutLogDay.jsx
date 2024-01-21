@@ -3,13 +3,14 @@ import PocketBase from "pocketbase";
 import { useEffect, useState } from "react";
 import "./WorkoutLogDay.scss";
 import User from "../../components/User/User";
+import { Helmet } from "react-helmet";
+
 export default function WorkoutLogDay() {
   const pb = new PocketBase("https://trening.pockethost.io");
   const params = useParams();
   const [performances, setPerformances] = useState([]);
   const showPerformancesOnDate = async () => {
     const dateT = params.date.replace("T", " ");
-    console.log(dateT);
 
     const records = await pb.collection("performances").getFullList({
       expand: "excercise",
@@ -22,7 +23,6 @@ export default function WorkoutLogDay() {
   }, []);
   const showData = () => {
     return performances.map((performance) => {
-      console.log(performance);
       return (
         <li key={performance.id}>
           <span className="center"> {performance.expand.excercise.name}:</span>
@@ -37,6 +37,13 @@ export default function WorkoutLogDay() {
   };
   return (
     <>
+      <Helmet>
+        <title>Workout-log - WorkoutlogDay</title>
+        <meta
+          name="description"
+          content="Here you can see all your excercises for one day"
+        />
+      </Helmet>
       <User />
       <h1>{params.date}</h1>
       <ul className="performances">{showData()}</ul>

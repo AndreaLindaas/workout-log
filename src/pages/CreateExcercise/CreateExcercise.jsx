@@ -9,6 +9,7 @@ import User from "../../components/User/User";
 import PocketBase from "pocketbase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 export default function CreateExcercise() {
   const pb = new PocketBase("https://trening.pockethost.io");
   const [buttonDisabled, setButtonDisabled] = useState(true);
@@ -42,6 +43,10 @@ export default function CreateExcercise() {
 
   return (
     <>
+      <Helmet>
+        <title>Workout-log - Create excercise</title>
+        <meta name="description" content="Here you can ceate an excercise" />
+      </Helmet>
       <User />
       <form onSubmit={submitExcerciseForm}>
         <div>

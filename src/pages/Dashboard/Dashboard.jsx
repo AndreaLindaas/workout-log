@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import User from "../../components/User/User";
 import PocketBase from "pocketbase";
 import moment from "moment";
+import { CircularProgress } from "@mui/material";
+import { Helmet } from "react-helmet";
+
 export default function Dashboard() {
   const [performances, setPerformances] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const pb = new PocketBase("https://trening.pockethost.io");
 
   const seePerformances = async () => {
@@ -13,6 +18,7 @@ export default function Dashboard() {
       expand: "excercise",
     });
     setPerformances(records.items);
+    setIsLoading(false);
   };
   useEffect(() => {
     seePerformances();
@@ -44,11 +50,32 @@ export default function Dashboard() {
   };
   return (
     <>
+      <Helmet>
+        <title>Workout-log - Dashboard</title>
+        <meta
+          name="description"
+          content="Here you can see 10 last excercises and dates"
+        />
+      </Helmet>
       <User />
-      <p className="bold center">Last Excercises</p>
-      <ul className="card">{showPerformances()}</ul>
-      <p className="bold center">Last Performances</p>
-      <ul className="card">{showPerformanceDates()}</ul>
+
+      {performances.length > 0 && (
+        <>
+          <p className="bold center">Last Excercises</p>
+          <ul className="card">{showPerformances()}</ul>
+          <p className="bold center">Last Performances</p>
+          <ul className="card">{showPerformanceDates()}</ul>
+        </>
+      )}
+
+      {performances.length == 0 && !isLoading && (
+        <p className="center"> You have not performed any excercises yet</p>
+      )}
+      {isLoading && (
+        <div className="center">
+          <CircularProgress />
+        </div>
+      )}
     </>
   );
 }

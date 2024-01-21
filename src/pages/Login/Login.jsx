@@ -9,6 +9,8 @@ import {
 import { useState } from "react";
 import PocketBase from "pocketbase";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+
 export default function Login() {
   const pb = new PocketBase("https://trening.pockethost.io");
   const [isLoading, setIsLoading] = useState(false);
@@ -35,46 +37,54 @@ export default function Login() {
     }
   };
   return (
-    <form onSubmit={submitLoginForm}>
-      <div>
-        <FormControl variant="filled" className="form">
-          <FilledInput
-            name="email"
-            type="email"
-            id="filled-adornment-weight"
-            endAdornment={<InputAdornment position="end"></InputAdornment>}
-            aria-describedby="filled-weight-helper-text"
-            inputProps={{
-              "aria-label": "email",
-            }}
-          />
-          <FormHelperText id="filled-weight-helper-text">Email</FormHelperText>
-        </FormControl>
-      </div>
-      <div>
-        <FormControl variant="filled" className="form">
-          <FilledInput
-            name="password"
-            type="password"
-            id="filled-adornment-weight"
-            endAdornment={<InputAdornment position="end"></InputAdornment>}
-            aria-describedby="filled-weight-helper-text"
-            inputProps={{
-              "aria-label": "password",
-            }}
-          />
-          <FormHelperText id="filled-weight-helper-text">
-            Password
-          </FormHelperText>
-        </FormControl>
-      </div>
+    <>
+      <Helmet>
+        <title>Workout-log - Login</title>
+        <meta name="description" content="Login page" />
+      </Helmet>
+      <form onSubmit={submitLoginForm}>
+        <div>
+          <FormControl variant="filled" className="form">
+            <FilledInput
+              name="email"
+              type="email"
+              id="filled-adornment-weight"
+              endAdornment={<InputAdornment position="end"></InputAdornment>}
+              aria-describedby="filled-weight-helper-text"
+              inputProps={{
+                "aria-label": "email",
+              }}
+            />
+            <FormHelperText id="filled-weight-helper-text">
+              Email
+            </FormHelperText>
+          </FormControl>
+        </div>
+        <div>
+          <FormControl variant="filled" className="form">
+            <FilledInput
+              name="password"
+              type="password"
+              id="filled-adornment-weight"
+              endAdornment={<InputAdornment position="end"></InputAdornment>}
+              aria-describedby="filled-weight-helper-text"
+              inputProps={{
+                "aria-label": "password",
+              }}
+            />
+            <FormHelperText id="filled-weight-helper-text">
+              Password
+            </FormHelperText>
+          </FormControl>
+        </div>
 
-      {!isLoading && (
-        <Button type="submit" variant="contained" className="button">
-          Login
-        </Button>
-      )}
-      {isLoading && <CircularProgress />}
-    </form>
+        {!isLoading && (
+          <Button type="submit" variant="contained" className="button">
+            Login
+          </Button>
+        )}
+        {isLoading && <CircularProgress />}
+      </form>
+    </>
   );
 }
