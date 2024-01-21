@@ -48,6 +48,7 @@ export default function RegisterPerformance() {
       date: date,
     };
     await pb.collection("performances").create(data);
+    navigate("/dashboard");
   };
   const fetchExcercises = async () => {
     const records = await pb.collection("excercises").getFullList({

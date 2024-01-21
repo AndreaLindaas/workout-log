@@ -33,7 +33,8 @@ export default function WorkoutLog() {
         <>
           <Link to={`/workout-log/${date}`}>
             <li key={i}>
-              {date} <ArrowForwardIcon />
+              {moment(date).format("dddd DD.MM.YYYY").toLocaleString()}{" "}
+              <ArrowForwardIcon />
             </li>
           </Link>
         </>

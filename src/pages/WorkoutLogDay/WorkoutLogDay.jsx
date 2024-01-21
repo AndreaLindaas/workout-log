@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./WorkoutLogDay.scss";
 import User from "../../components/User/User";
 import { Helmet } from "react-helmet";
+import moment from "moment";
 
 export default function WorkoutLogDay() {
   const pb = new PocketBase("https://trening.pockethost.io");
@@ -45,7 +46,7 @@ export default function WorkoutLogDay() {
         />
       </Helmet>
       <User />
-      <h1>{params.date}</h1>
+      <h1>{moment(params.date).format("dddd DD.MM.YYYY").toLocaleString()}</h1>
       <ul className="performances">{showData()}</ul>
     </>
   );
