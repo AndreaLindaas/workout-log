@@ -14,6 +14,8 @@ import { Helmet } from "react-helmet";
 export default function Login() {
   const pb = new PocketBase("https://trening.pockethost.io");
   const [isLoading, setIsLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+
   const navigate = useNavigate();
 
   const submitLoginForm = async (event) => {
@@ -32,7 +34,8 @@ export default function Login() {
         navigate("/dashboard");
       }
     } catch (error) {
-      //Ugyldig brukernavn eller passord. vis feilmelding
+      setShowError(true);
+
       setIsLoading(false);
     }
   };
@@ -77,7 +80,11 @@ export default function Login() {
             </FormHelperText>
           </FormControl>
         </div>
-
+        {showError && (
+          <div className="center error">
+            Something went wrong with login. Please try again.
+          </div>
+        )}
         {!isLoading && (
           <Button type="submit" variant="contained" className="button">
             Login
