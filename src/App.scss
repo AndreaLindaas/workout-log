@@ -21,7 +21,7 @@ ul.card {
   padding: 20px 40px;
   border-radius: 3px;
   max-width: 300px;
-  margin: 0 auto;
+  margin: 20px auto;
   li {
     background: white;
     color: black;
@@ -35,4 +35,8 @@ ul.card {
 }
 .error {
   color: #a70000;
+  margin: 10px;
+}
+a {
+  text-decoration: none;
 }

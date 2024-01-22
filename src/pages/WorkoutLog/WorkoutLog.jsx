@@ -27,8 +27,6 @@ export default function WorkoutLog() {
       new Set(performances.map((p) => moment(p.date).toISOString()))
     );
     return uniqueDates.map((date, i) => {
-      console.log(date);
-
       return (
         <>
           <Link to={`/workout-log/${date}`}>

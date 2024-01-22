@@ -14,6 +14,8 @@ export default function CreateExcercise() {
   const pb = new PocketBase("https://trening.pockethost.io");
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [excerciseName, setExcerciseName] = useState("");
+  const [showError, setShowError] = useState(false);
+
   const navigate = useNavigate();
 
   const submitExcerciseForm = async (event) => {
@@ -27,7 +29,8 @@ export default function CreateExcercise() {
       await pb.collection("excercises").create(data);
       navigate("/register-performance");
     } catch (error) {
-      console.log(error);
+      setShowError(true);
+
       setButtonDisabled(false);
     }
   };
@@ -66,6 +69,11 @@ export default function CreateExcercise() {
             </FormHelperText>
           </FormControl>
         </div>
+        {showError && (
+          <div className="center error">
+            Something went wrong when registering excercise. Please try again.
+          </div>
+        )}
         <Button
           disabled={buttonDisabled}
           type="submit"

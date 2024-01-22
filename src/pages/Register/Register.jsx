@@ -35,7 +35,6 @@ export default function Register() {
       await pb.collection("users").create(data);
       navigate("/login");
     } catch (error) {
-      console.log(error);
       setShowError(true);
 
       setButtonDisabled(false);
