@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import PocketBase from "pocketbase";
 import { useEffect, useState } from "react";
-import "./WorkoutLogDay.scss";
 import User from "../../components/User/User";
 import { Helmet } from "react-helmet";
 import moment from "moment";
