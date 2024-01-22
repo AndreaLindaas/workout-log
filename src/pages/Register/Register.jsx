@@ -97,6 +97,7 @@ export default function Register() {
               name="name"
               value={nameValue}
               type="text"
+              autoComplete="on"
               onChange={nameChanged}
               endAdornment={<InputAdornment position="end"></InputAdornment>}
               aria-describedby="filled-weight-helper-text"
@@ -116,6 +117,7 @@ export default function Register() {
               value={emailValue}
               onChange={emailChanged}
               type="email"
+              autoComplete="on"
               endAdornment={<InputAdornment position="end"></InputAdornment>}
               aria-describedby="filled-weight-helper-text"
               inputProps={{
@@ -134,6 +136,7 @@ export default function Register() {
               value={passwordValue}
               onChange={passwordChanged}
               type="password"
+              autoComplete="on"
               endAdornment={<InputAdornment position="end"></InputAdornment>}
               aria-describedby="filled-weight-helper-text"
               inputProps={{
@@ -152,6 +155,7 @@ export default function Register() {
               value={confirmPasswordValue}
               onChange={passwordConfirmChanged}
               type="password"
+              autoComplete="on"
               endAdornment={<InputAdornment position="end"></InputAdornment>}
               aria-describedby="filled-weight-helper-text"
               inputProps={{

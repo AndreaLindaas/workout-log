@@ -51,6 +51,7 @@ export default function Login() {
             <FilledInput
               name="email"
               type="email"
+              autoComplete="on"
               id="filled-adornment-weight"
               endAdornment={<InputAdornment position="end"></InputAdornment>}
               aria-describedby="filled-weight-helper-text"
@@ -68,6 +69,7 @@ export default function Login() {
             <FilledInput
               name="password"
               type="password"
+              autoComplete="on"
               id="filled-adornment-weight"
               endAdornment={<InputAdornment position="end"></InputAdornment>}
               aria-describedby="filled-weight-helper-text"
