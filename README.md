@@ -1,8 +1,23 @@
-# React + Vite
+# WorkoutLog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple application for tracking gym exercises, providing the user with historical data and motivation to out perform the results from last session.
 
-Currently, two official plugins are available:
+## Problem
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+People are not excercising enough and the national health average is declining. To solve this we can create an applicaton to help motivate and engange the user to excercise more. Providing a workout log to track your progress may give the user an incentive to continue excercising.
+
+## Solution
+
+The application has a simple design, built mobile first because the users will be using it while exercising. It is of course possible to register exercises (or performances as they are called in the application) later aswell.
+
+This app is an MVP, so there will be both missing and least effort functionality in some areas. Nevertheless, the application is working and you can register a user and begin your travel towards better health using this excercise tracker.
+
+### Technical
+
+Frontend is React.js, hosted on Vite. Major third party packages include MUI and moment.js. The app uses SCSS for styling.
+
+Backend is made used Pocketbase, hosted at Pockethost.io. It's a simple one-click backend providing a database with API's, authentication, storage and an administration dashboard.
+
+### Link
+
+https://workout-log-andrea.netlify.app/
