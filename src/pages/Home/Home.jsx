@@ -3,34 +3,27 @@ import { Button } from "@mui/material";
 import "./Home.scss";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-
+import Video from "../../components/Video/video";
 Link;
 export default function Home() {
   useEffect(() => {}, []);
 
   return (
-    <>
+    <div className="home">
       <Helmet>
         <title>Workout-log - Home</title>
         <meta name="description" content="Welcome to this workout-log" />
       </Helmet>
+      <Video />
+
       <div className="container">
-        <h1>Welcome to your new excercise log</h1>
-        <div>
-          Keeping track of your workouts is a powerful tool on your fitness
-          journey.
-        </div>
-        <ol>
-          <li>
-            Record Your Workouts: Log each exercise, the number of sets and
-            reps.
-          </li>
-          <li>Track Your Progress.</li>
-          <li>
-            Stay Consistent: Consistency is key! Make a habit of updating your
-            exercise log regularly to stay on top of your fitness game.
-          </li>
-        </ol>
+        <h1>Your new excercise log</h1>
+        <p>Use our powerfull tool to track your fitness journy:</p>
+        <ul>
+          <li>Record Your Workouts</li>
+          <li>Track Your Progress</li>
+          <li>Get inspired</li>
+        </ul>
         <div className="center">
           <Link to="/login">
             <Button variant="contained">Login</Button>
@@ -40,6 +33,6 @@ export default function Home() {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 }

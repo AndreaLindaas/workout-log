@@ -5,7 +5,6 @@ import PocketBase from "pocketbase";
 import moment from "moment";
 import { CircularProgress } from "@mui/material";
 import { Helmet } from "react-helmet";
-
 export default function Dashboard() {
   const [performances, setPerformances] = useState([]);
   const [isLoading, setIsLoading] = useState(true);

@@ -4,17 +4,29 @@
   margin: 100px auto;
   padding-bottom: 40px;
   max-width: 500px;
-  li {
-    margin: 10px 0;
-  }
-  div,
-  ol {
-    margin: 0 auto;
-    max-width: 477px;
+  background-color: var(--tertiary);
+  color: #fff;
+  ul {
+    list-style-type: circle;
+    padding-left: 20px;
+    li {
+      margin: 10px 0;
+    }
   }
   .center button {
-    background-color: var(--tertiary);
-    color: var(--secondary);
+    background-color: var(--secondary);
+    color: var(--tertiary);
     margin: 20px 5px 0 5px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 300px;
+    margin: 50px 20px;
+    background-color: var(--tertiary);
+
+    h1 {
+      font-size: 28px;
+    }
   }
 }
