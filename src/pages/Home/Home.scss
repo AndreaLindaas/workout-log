@@ -29,14 +29,14 @@
 @media screen and (min-width: 768px) {
   .home {
     background-image: none;
-    // height: 0;
+    height: auto;
     // background-size: auto;
     // background-repeat: repeat;
     // padding-top: 0;
   }
   .container {
     width: 300px;
-    margin: 50px 20px;
+    margin: 50px 50px;
     background-color: var(--tertiary);
 
     h1 {
