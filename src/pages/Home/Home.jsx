@@ -3,7 +3,7 @@ import { Button, useMediaQuery } from "@mui/material";
 import "./Home.scss";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Video from "../../components/Video/video";
+import Video from "../../components/Video/Video";
 export default function Home() {
   const isDesktop = useMediaQuery("(min-width:768px)");
 
