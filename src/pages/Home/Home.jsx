@@ -1,11 +1,12 @@
-import { useEffect } from "react";
-import { Button } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Button, useMediaQuery } from "@mui/material";
 import "./Home.scss";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Video from "../../components/Video/video";
-Link;
 export default function Home() {
+  const isDesktop = useMediaQuery("(min-width:768px)");
+
   useEffect(() => {}, []);
 
   return (
@@ -14,8 +15,8 @@ export default function Home() {
         <title>Workout-log - Home</title>
         <meta name="description" content="Welcome to this workout-log" />
       </Helmet>
-      <Video />
-
+      {isDesktop && <Video />}
+      {/* <img src="/assets/media/weights.jpg" alt="" /> */}
       <div className="container">
         <h1>Your new excercise log</h1>
         <p>Use our powerfull tool to track your fitness journy:</p>
