@@ -16,7 +16,6 @@ export default function Home() {
         <meta name="description" content="Welcome to this workout-log" />
       </Helmet>
       {isDesktop && <Video />}
-      {/* <img src="/assets/media/weights.jpg" alt="" /> */}
       <div className="container">
         <h1>Your new excercise log</h1>
         <p>Use our powerfull tool to track your fitness journy:</p>

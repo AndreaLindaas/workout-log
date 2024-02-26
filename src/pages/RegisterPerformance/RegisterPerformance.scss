@@ -1,12 +1,21 @@
 form {
   text-align: center;
   margin-top: 50px;
+
+  .MuiOutlinedInput-notchedOutline {
+  }
+  // .input-form {
+  //   margin-top: 30px;
+  // }
+  .helper-text {
+    color: #fff;
+  }
   .form {
     width: 270px;
     margin-bottom: 10px;
   }
   .button {
-    background-color: var(--tertiary);
-    color: var(--secondary);
+    background-color: var(--secondary);
+    color: var(--tertiary);
   }
 }

@@ -5,11 +5,13 @@ import {
   FormHelperText,
   Button,
   CircularProgress,
+  TextField,
 } from "@mui/material";
 import { useState } from "react";
 import PocketBase from "pocketbase";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import "./Login.scss";
 
 export default function Login() {
   const pb = new PocketBase("https://trening.pockethost.io");
@@ -40,60 +42,72 @@ export default function Login() {
     }
   };
   return (
-    <>
+    <div className="login">
       <Helmet>
         <title>Workout-log - Login</title>
         <meta name="description" content="Login page" />
       </Helmet>
-      <form onSubmit={submitLoginForm}>
-        <div>
-          <FormControl variant="filled" className="form">
-            <FilledInput
-              name="email"
-              type="email"
-              autoComplete="on"
-              id="filled-adornment-weight"
-              endAdornment={<InputAdornment position="end"></InputAdornment>}
-              aria-describedby="filled-weight-helper-text"
-              inputProps={{
-                "aria-label": "email",
-              }}
-            />
-            <FormHelperText id="filled-weight-helper-text">
-              Email
-            </FormHelperText>
-          </FormControl>
-        </div>
-        <div>
-          <FormControl variant="filled" className="form">
-            <FilledInput
-              name="password"
-              type="password"
-              autoComplete="on"
-              id="filled-adornment-weight"
-              endAdornment={<InputAdornment position="end"></InputAdornment>}
-              aria-describedby="filled-weight-helper-text"
-              inputProps={{
-                "aria-label": "password",
-              }}
-            />
-            <FormHelperText id="filled-weight-helper-text">
-              Password
-            </FormHelperText>
-          </FormControl>
-        </div>
-        {showError && (
-          <div className="center error">
-            Something went wrong with login. Please try again.
+      <div className="login-form-container">
+        <h1>Login</h1>
+        <form onSubmit={submitLoginForm}>
+          <div>
+            <FormControl variant="filled" className="form">
+              <TextField
+                className="input-form"
+                name="email"
+                type="email"
+                autoComplete="on"
+                id="filled-adornment-weight"
+                endAdornment={<InputAdornment position="end"></InputAdornment>}
+                aria-describedby="filled-weight-helper-text"
+                inputProps={{
+                  "aria-label": "email",
+                }}
+              />
+
+              <FormHelperText
+                id="filled-weight-helper-text"
+                className="helper-text"
+              >
+                Email
+              </FormHelperText>
+            </FormControl>
           </div>
-        )}
-        {!isLoading && (
-          <Button type="submit" variant="contained" className="button">
-            Login
-          </Button>
-        )}
-        {isLoading && <CircularProgress />}
-      </form>
-    </>
+          <div>
+            <FormControl variant="filled" className="form">
+              <TextField
+                className="input-form"
+                name="password"
+                type="password"
+                autoComplete="on"
+                id="filled-adornment-weight"
+                endAdornment={<InputAdornment position="end"></InputAdornment>}
+                aria-describedby="filled-weight-helper-text"
+                inputProps={{
+                  "aria-label": "password",
+                }}
+              />
+              <FormHelperText
+                id="filled-weight-helper-text"
+                className="helper-text"
+              >
+                Password
+              </FormHelperText>
+            </FormControl>
+          </div>
+          {showError && (
+            <div className="center error">
+              Something went wrong with login. Please try again.
+            </div>
+          )}
+          {!isLoading && (
+            <Button type="submit" variant="contained" className="button">
+              Login
+            </Button>
+          )}
+          {isLoading && <CircularProgress />}
+        </form>
+      </div>
+    </div>
   );
 }
