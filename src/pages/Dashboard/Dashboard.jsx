@@ -54,7 +54,7 @@ export default function Dashboard() {
     });
   };
   return (
-    <>
+    <div className="fullscreenBackground floorWeight">
       <Helmet>
         <title>Workout-log - Dashboard</title>
         <meta
@@ -88,6 +88,6 @@ export default function Dashboard() {
           <CircularProgress />
         </div>
       )}
-    </>
+    </div>
   );
 }

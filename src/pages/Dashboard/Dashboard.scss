@@ -11,6 +11,15 @@
   text-align: center;
 }
 
+.performancesAndExcercises {
+  > div {
+    background-color: var(--tertiary);
+    color: #fff;
+    margin: 20px;
+    padding-top: 20px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .performancesAndExcercises {
     display: flex;

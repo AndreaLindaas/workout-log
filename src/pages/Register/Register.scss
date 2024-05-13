@@ -1,0 +1,19 @@
+.content {
+  background-color: var(--tertiary);
+  max-width: 500px;
+  margin: 1px auto;
+  color: #fff;
+  padding: 20px 0;
+
+  .MuiInputBase-input.MuiFilledInput-input {
+    background: #fff;
+  }
+
+  .MuiFormHelperText-root {
+    color: #fff;
+  }
+
+  .button.registerButton {
+    background-color: var(--secondary);
+  }
+}

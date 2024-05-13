@@ -33,10 +33,14 @@ export default function Home() {
         </ul>
         <div className="center">
           <Link to="/login">
-            <Button variant="contained">Login</Button>
+            <Button className="button" variant="contained">
+              Login
+            </Button>
           </Link>
           <Link to="/register">
-            <Button variant="contained">Sign up</Button>
+            <Button className="button" variant="contained">
+              Sign up
+            </Button>
           </Link>
         </div>
       </div>
