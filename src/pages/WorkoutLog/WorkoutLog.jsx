@@ -31,7 +31,7 @@ export default function WorkoutLog() {
         <>
           <Link to={`/workout-log/${date}`}>
             <li key={i}>
-              {moment(date).format("dddd DD.MM.YYYY").toLocaleString()}{" "}
+              {moment(date).format("dddd DD.MM.YYYY").toLocaleString()}
               <ArrowForwardIcon />
             </li>
           </Link>
@@ -52,6 +52,7 @@ export default function WorkoutLog() {
 
       {performances.length > 0 && (
         <>
+          <h2 className="center">Your workouts</h2>
           <ul className="card">{showPerformanceDates()}</ul>
         </>
       )}

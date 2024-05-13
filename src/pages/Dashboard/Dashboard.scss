@@ -10,3 +10,25 @@
 .center {
   text-align: center;
 }
+
+@media screen and (min-width: 768px) {
+  .performancesAndExcercises {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+
+    > div {
+      width: 350px;
+
+      ul {
+        li {
+          border: 3px solid transparent;
+          &:hover {
+            border: 3px solid var(--secondary);
+          }
+        }
+      }
+    }
+  }
+}

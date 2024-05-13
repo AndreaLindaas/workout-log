@@ -80,11 +80,16 @@ export default function Excercise() {
       </Helmet>
       <h1>{excercise.name}</h1>
 
-      <AreaChart data={chartData} title="Chart title" xLabels={chartXLabels} />
-
+      <div className="chart-container">
+        <AreaChart
+          data={chartData}
+          title={excercise.name}
+          xLabels={chartXLabels}
+        />
+      </div>
       {performances.length > 0 && (
         <>
-          <h2>Log</h2>
+          <h2 className="center">Log</h2>
           <ul className="performances">{showPerformances()}</ul>
         </>
       )}

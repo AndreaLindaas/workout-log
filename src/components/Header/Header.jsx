@@ -55,11 +55,11 @@ export default function Header() {
                   <span>Workout log</span>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/create">
                   <span>Create Excercice</span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/register-performance">
                   <span>Register performance</span>

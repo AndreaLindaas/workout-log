@@ -42,15 +42,15 @@ export default function Dashboard() {
 
   const showPerformanceDates = () => {
     const uniqueDates = Array.from(
-      new Set(
-        performances.map((p) =>
-          moment(p.date).format("DD.MM.YYYY").toLocaleString()
-        )
-      )
+      new Set(performances.map((p) => moment(p.date).toISOString()))
     );
 
     return uniqueDates.map((date, i) => {
-      return <li key={i}>{date}</li>;
+      return (
+        <Link key={i} to={`/workout-log/${date}`}>
+          <li> {moment(date).format("dddd DD.MM.YYYY").toLocaleString()}</li>
+        </Link>
+      );
     });
   };
   return (
@@ -65,12 +65,16 @@ export default function Dashboard() {
       <User />
 
       {performances.length > 0 && (
-        <>
-          <p className="bold center">Last Excercises</p>
-          <ul className="card">{showPerformances()}</ul>
-          <p className="bold center">Last Performances</p>
-          <ul className="card">{showPerformanceDates()}</ul>
-        </>
+        <div className="performancesAndExcercises">
+          <div>
+            <p className="bold center">Last Excercises</p>
+            <ul className="card">{showPerformances()}</ul>
+          </div>
+          <div>
+            <p className="bold center">Last Performances</p>
+            <ul className="card">{showPerformanceDates()}</ul>
+          </div>
+        </div>
       )}
 
       {performances.length == 0 && !isLoading && (
