@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import User from "../../components/User/User";
 import PocketBase from "pocketbase";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import { Helmet } from "react-helmet";
 export default function Dashboard() {
@@ -26,10 +27,15 @@ export default function Dashboard() {
   const showPerformances = () => {
     return performances.map((performance) => {
       return (
-        <li key={performance.id}>
-          <span>{performance.expand.excercise.name}</span>
-          <span>{performance.kg} kg</span>
-        </li>
+        <Link
+          key={performances.id}
+          to={`/excercise/${performance.expand.excercise.id}`}
+        >
+          <li key={performance.id}>
+            <span>{performance.expand.excercise.name}</span>
+            <span>{performance.kg} kg</span>
+          </li>
+        </Link>
       );
     });
   };
@@ -68,7 +74,10 @@ export default function Dashboard() {
       )}
 
       {performances.length == 0 && !isLoading && (
-        <p className="center"> You have not performed any excercises yet</p>
+        <p className="center">
+          You have not performed any excercises yet.
+          <strong> What are you waiting for?</strong>
+        </p>
       )}
       {isLoading && (
         <div className="center">

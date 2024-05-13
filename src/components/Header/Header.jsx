@@ -31,22 +31,27 @@ export default function Header() {
 
   const renderMenuItems = () => {
     return (
-      <>
+      <header>
+        <div className="logo">
+          <Link to="/">
+            <img src="/assets/applogo.png" />
+          </Link>
+        </div>
         <ul className="headerList">
           {isUserLoggedIn() && (
             <>
-              <li>
+              {/* <li>
                 <Link to="/dashboard">
                   <span>Dashboard</span>
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/excercises">
                   <span>Excercises</span>
                 </Link>
               </li>
               <li>
-                <Link to="workout-log">
+                <Link to="/workout-log">
                   <span>Workout log</span>
                 </Link>
               </li>
@@ -80,13 +85,13 @@ export default function Header() {
             </>
           )}
         </ul>
-      </>
+      </header>
     );
   };
 
   if (!isDesktop) {
     return (
-      <>
+      <header>
         <div className="menuIcon" onClick={toggleMenu}>
           <MenuIcon />
         </div>
@@ -99,7 +104,7 @@ export default function Header() {
         >
           {renderMenuItems()}
         </Drawer>
-      </>
+      </header>
     );
   } else {
     return <>{renderMenuItems()}</>;

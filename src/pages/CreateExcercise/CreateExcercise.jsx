@@ -47,7 +47,7 @@ export default function CreateExcercise() {
   return (
     <>
       <Helmet>
-        <title>Workout-log - Create excercise</title>
+        <title>Workout Log | Create excercise</title>
         <meta name="description" content="Here you can ceate an excercise" />
       </Helmet>
       <User />

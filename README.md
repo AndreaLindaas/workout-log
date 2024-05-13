@@ -2,6 +2,12 @@
 
 This is a simple application for tracking gym exercises, providing the user with historical data and motivation to out perform the results from last session.
 
+## DEMO user!
+
+Use this account to have a look around the app without registering excercises and performances.
+username: demo@demo.no  
+password: demo1234
+
 ## Problem
 
 People are not excercising enough and the national health average is declining. To solve this we can create an applicaton to help motivate and engange the user to excercise more. Providing a workout log to track your progress may give the user an incentive to continue excercising.

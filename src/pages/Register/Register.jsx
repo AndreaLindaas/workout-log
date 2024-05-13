@@ -87,7 +87,7 @@ export default function Register() {
   return (
     <>
       <Helmet>
-        <title>Workout-log - Register user</title>
+        <title>Workout Log | Register user</title>
         <meta name="description" content="Here you can register your user" />
       </Helmet>
       <form onSubmit={submitRegisterForm}>

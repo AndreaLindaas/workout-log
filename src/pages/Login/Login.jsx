@@ -44,7 +44,7 @@ export default function Login() {
   return (
     <div className="login">
       <Helmet>
-        <title>Workout-log - Login</title>
+        <title>Workout Log | Login</title>
         <meta name="description" content="Login page" />
       </Helmet>
       <div className="login-form-container">

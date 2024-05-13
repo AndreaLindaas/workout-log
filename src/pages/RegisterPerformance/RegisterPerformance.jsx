@@ -89,7 +89,7 @@ export default function RegisterPerformance() {
   return (
     <>
       <Helmet>
-        <title>Workout-log - Register performance</title>
+        <title>Workout Log | Register performance</title>
         <meta
           name="description"
           content="Here you can register an performance"
@@ -101,8 +101,6 @@ export default function RegisterPerformance() {
           <Select
             onChange={excerciseSelected}
             value={selectedExcercise}
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
             variant="filled"
             name="excercise"
           >

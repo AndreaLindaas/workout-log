@@ -1,9 +1,27 @@
-.MuiPaper-root.muiCard {
-  background-color: var(--tertiary);
-  color: var(--secondary);
-  margin: 20px auto;
-  a {
-    color: var(--secondary);
-    text-decoration: none;
+.excercises {
+  .excercises-list {
+    .MuiPaper-root.muiCard {
+      background-color: var(--tertiary);
+      color: var(--secondary);
+      margin: 20px auto;
+      a {
+        color: var(--secondary);
+        text-decoration: none;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .excercises-list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .excercises-card {
+        width: 250px;
+        height: 250px;
+      }
+    }
   }
 }

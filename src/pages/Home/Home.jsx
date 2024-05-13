@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react";
 import { Button, useMediaQuery } from "@mui/material";
 import "./Home.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Video from "../../components/Video/Video";
+import { isUserLoggedIn } from "../../lib/utils";
+
 export default function Home() {
   const isDesktop = useMediaQuery("(min-width:768px)");
+  const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (isUserLoggedIn()) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <div className="home">
       <Helmet>
-        <title>Workout-log - Home</title>
+        <title>Workout Log | Home</title>
         <meta name="description" content="Welcome to this workout-log" />
       </Helmet>
       {isDesktop && <Video />}
       <div className="container">
-        <h1>Your new excercise log</h1>
+        <h1>Your new excercise log!</h1>
         <p>Use our powerfull tool to track your fitness journy:</p>
         <ul>
           <li>Record Your Workouts</li>
@@ -29,7 +36,7 @@ export default function Home() {
             <Button variant="contained">Login</Button>
           </Link>
           <Link to="/register">
-            <Button variant="contained">Register</Button>{" "}
+            <Button variant="contained">Sign up</Button>
           </Link>
         </div>
       </div>

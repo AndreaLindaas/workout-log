@@ -5,11 +5,15 @@ import moment from "moment";
 import "./Excercise.scss";
 import { CircularProgress } from "@mui/material";
 import { Helmet } from "react-helmet";
+import AreaChart from "../../components/AreaChart/AreaChart";
+import { chart } from "highcharts";
 
 export default function Excercise() {
   const [isLoading, setIsLoading] = useState(true);
   const [performances, setPerformances] = useState([]);
   const [excercise, setExcercise] = useState({});
+  const [chartData, setChartData] = useState([]);
+  const [chartXLabels, setChartXLabels] = useState([]);
   const params = useParams();
 
   const pb = new PocketBase("https://trening.pockethost.io");
@@ -29,8 +33,19 @@ export default function Excercise() {
       filter: `excercise = '${params.id}'`,
     });
     setPerformances(record);
+    generateChartData(record);
     setIsLoading(false);
   };
+
+  const generateChartData = (record) => {
+    const data = record.map((p) => p.kg);
+    const labels = record.map((p) => renderDate(p.date));
+
+    console.log(data, labels);
+    setChartData(data);
+    setChartXLabels(labels);
+  };
+
   useEffect(() => {
     getExcercise();
     showExcercise();
@@ -60,13 +75,18 @@ export default function Excercise() {
   return (
     <>
       <Helmet>
-        <title>Workout-log - Excercise</title>
+        <title>Workout Log | Excercise</title>
         <meta name="description" content="Here you can see one excercise" />
       </Helmet>
       <h1>{excercise.name}</h1>
 
+      <AreaChart data={chartData} title="Chart title" xLabels={chartXLabels} />
+
       {performances.length > 0 && (
-        <ul className="performances">{showPerformances()}</ul>
+        <>
+          <h2>Log</h2>
+          <ul className="performances">{showPerformances()}</ul>
+        </>
       )}
 
       {performances.length === 0 && (

@@ -28,42 +28,50 @@ export default function Excercises() {
   const seeExcercises = () => {
     return excercises.map((excercice) => {
       return (
-        <>
-          <Card key={excercice.id} sx={{ maxWidth: 345 }} className="muiCard">
+        <Card
+          key={excercice.id}
+          sx={{ maxWidth: 345 }}
+          className="muiCard excercises-card"
+        >
+          <Link to={`/excercise/${excercice.id}`}>
             <CardMedia
               sx={{ height: 140 }}
-              image="./assets/media/trening.jpg"
+              image={
+                excercice.picture
+                  ? excercice.picture
+                  : "./assets/media/trening.jpg"
+              }
             />
-            <Link to={`/excercise/${excercice.id}`}>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {excercice.name}
-                </Typography>
-              </CardContent>
-            </Link>
-          </Card>
-        </>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {excercice.name}
+              </Typography>
+            </CardContent>
+          </Link>
+        </Card>
       );
     });
   };
-  if (isLoading) {
-    return (
-      <div className="center">
-        <CircularProgress />
-      </div>
-    );
-  }
+
   return (
     <>
       <Helmet>
-        <title>Workout-log - Excercises</title>
+        <title>Workout Log | Excercises</title>
         <meta
           name="description"
           content="Here you can see the 10 last excercises and dates"
         />
       </Helmet>
       <User />
-      <div>{seeExcercises()}</div>
+      <div className="excercises">
+        <h1 className="page-title">All excercises ({excercises.length})</h1>
+        {isLoading && (
+          <div className="center">
+            <CircularProgress />
+          </div>
+        )}
+        {!isLoading && <div className="excercises-list">{seeExcercises()}</div>}
+      </div>
     </>
   );
 }
