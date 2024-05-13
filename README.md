@@ -4,7 +4,7 @@ This is a simple application for tracking gym exercises, providing the user with
 
 ## DEMO user!
 
-Use this account to have a look around the app without registering excercises and performances.
+Use this account to have a look around the app without registering excercises and performances.  
 username: demo@demo.no  
 password: demo1234
 

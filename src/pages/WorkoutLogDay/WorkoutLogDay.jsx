@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import PocketBase from "pocketbase";
 import { useEffect, useState } from "react";
 import User from "../../components/User/User";
@@ -27,14 +27,19 @@ export default function WorkoutLogDay() {
   const showData = () => {
     return performances.map((performance) => {
       return (
-        <li key={performance.id}>
-          <span className="center"> {performance.expand.excercise.name}</span>
-          <span className="values">
-            <span>{performance.kg} Kg</span>
-            <span>{performance.reps} Reps</span>
-            <span>{performance.sets} Set</span>
-          </span>
-        </li>
+        <Link
+          key={performance.id}
+          to={`/excercise/${performance.expand.excercise.id}`}
+        >
+          <li>
+            <span className="center"> {performance.expand.excercise.name}</span>
+            <span className="values">
+              <span>{performance.kg} Kg</span>
+              <span>{performance.reps} Reps</span>
+              <span>{performance.sets} Set</span>
+            </span>
+          </li>
+        </Link>
       );
     });
   };
