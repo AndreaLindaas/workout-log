@@ -40,7 +40,6 @@ export default function Excercise() {
     const data = record.map((p) => p.kg);
     const labels = record.map((p) => renderDate(p.date));
 
-    console.log(data, labels);
     setChartData(data);
     setChartXLabels(labels);
   };

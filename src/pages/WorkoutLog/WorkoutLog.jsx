@@ -28,14 +28,12 @@ export default function WorkoutLog() {
     );
     return uniqueDates.map((date, i) => {
       return (
-        <>
-          <Link to={`/workout-log/${date}`}>
-            <li key={i}>
-              {moment(date).format("dddd DD.MM.YYYY").toLocaleString()}
-              <ArrowForwardIcon />
-            </li>
-          </Link>
-        </>
+        <Link key={i} to={`/workout-log/${date}`}>
+          <li>
+            {moment(date).format("dddd DD.MM.YYYY").toLocaleString()}
+            <ArrowForwardIcon />
+          </li>
+        </Link>
       );
     });
   };

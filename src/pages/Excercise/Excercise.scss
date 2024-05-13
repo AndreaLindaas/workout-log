@@ -3,17 +3,17 @@ h1 {
 }
 ul.performances {
   margin: 0 auto;
-  max-width: 300px;
+  max-width: 600px;
+  width: 100%;
   li {
     background-color: var(--tertiary);
     color: var(--secondary);
     margin: 10px;
-    max-width: 300px;
-    padding: 10px 20px 20px 20px;
+    padding: 10px;
     .values {
       display: flex;
       gap: 30px;
-      justify-content: center;
+      justify-content: right;
       span {
         margin-top: 10px;
       }
