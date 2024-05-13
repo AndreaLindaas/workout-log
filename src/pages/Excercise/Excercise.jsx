@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import PocketBase from "pocketbase";
 import { useEffect, useState } from "react";
 import moment from "moment";
@@ -6,7 +6,6 @@ import "./Excercise.scss";
 import { CircularProgress } from "@mui/material";
 import { Helmet } from "react-helmet";
 import AreaChart from "../../components/AreaChart/AreaChart";
-import { chart } from "highcharts";
 
 export default function Excercise() {
   const [isLoading, setIsLoading] = useState(true);
@@ -54,7 +53,7 @@ export default function Excercise() {
   const showPerformances = () => {
     return performances.map((performance) => {
       return (
-        <>
+        <Link key={performance.id} to={`/workout-log/${performance.date}`}>
           <li>
             <span>{renderDate(performance.date)}</span>
             <span className="values">
@@ -63,7 +62,7 @@ export default function Excercise() {
               <span>{performance.sets} Sets</span>
             </span>
           </li>
-        </>
+        </Link>
       );
     });
   };
@@ -90,6 +89,10 @@ export default function Excercise() {
       {performances.length > 0 && (
         <>
           <h2 className="center">Log</h2>
+          <p className="center subtitle">
+            Click on a performance to see the whole workout for that particular
+            day.
+          </p>
           <ul className="performances">{showPerformances()}</ul>
         </>
       )}

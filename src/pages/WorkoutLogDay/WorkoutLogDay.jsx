@@ -54,6 +54,9 @@ export default function WorkoutLogDay() {
       </Helmet>
       <User />
       <h1>{moment(params.date).format("dddd DD.MM.YYYY").toLocaleString()}</h1>
+      <p className="center subtitle">
+        Click on a excercise to see your progression for that excercise!
+      </p>
       {isLoading && (
         <div className="center">
           <CircularProgress />
