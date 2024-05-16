@@ -166,9 +166,11 @@ export default function RegisterPerformance() {
           />
         </div>
 
-        <Button type="submit" variant="contained" className="button">
-          Save
-        </Button>
+        <div className="buttonRow">
+          <Button variant="contained" className="button">
+            Save
+          </Button>
+        </div>
       </form>
     </>
   );

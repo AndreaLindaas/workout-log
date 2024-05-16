@@ -38,7 +38,7 @@ export default function Excercises() {
               sx={{ height: 140 }}
               image={
                 excercice.picture
-                  ? excercice.picture
+                  ? `https://trening.pockethost.io/api/files/excercises/${excercice.id}/${excercice.picture}?thumb=350x150`
                   : "./assets/media/trening.jpg"
               }
             />

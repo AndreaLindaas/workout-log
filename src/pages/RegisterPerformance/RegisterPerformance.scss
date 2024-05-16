@@ -14,8 +14,14 @@ form {
     width: 270px;
     margin-bottom: 10px;
   }
-  .button {
-    background-color: var(--secondary);
-    color: var(--tertiary);
+
+  .buttonRow {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    .button {
+      background-color: var(--secondary);
+      color: var(--tertiary);
+    }
   }
 }

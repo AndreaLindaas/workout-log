@@ -61,6 +61,17 @@ export default function AreaChart(props) {
       },
     ],
   };
+  console.log("lengde", data.length);
+  if (data.length < 2) {
+    return (
+      <div>
+        <p>
+          We are still gathering data to show your progress in a chart. Perform
+          more of this excercise and we will have it ready for you!
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
