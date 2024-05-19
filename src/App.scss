@@ -13,11 +13,7 @@ h1 {
   margin-top: 0;
   padding-top: 20px;
 }
-// main {
-//   // background-color: var(--primary);
-//   padding-top: 1px;
-//   min-height: 100vh;
-// }
+
 ul {
   margin: 0;
   list-style-type: none;
@@ -38,6 +34,13 @@ ul.card {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
+  }
+}
+
+li.list-item {
+  border: 3px solid transparent;
+  &:hover {
+    border: 3px solid var(--secondary);
   }
 }
 .error {

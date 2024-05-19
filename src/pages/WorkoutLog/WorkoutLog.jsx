@@ -29,7 +29,7 @@ export default function WorkoutLog() {
     return uniqueDates.map((date, i) => {
       return (
         <Link key={i} to={`/workout-log/${date}`}>
-          <li>
+          <li className="list-item">
             {moment(date).format("dddd DD.MM.YYYY").toLocaleString()}
             <ArrowForwardIcon />
           </li>
