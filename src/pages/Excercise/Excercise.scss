@@ -1,6 +1,17 @@
 h1 {
   text-align: center;
 }
+
+.image {
+  height: 400px;
+  width: 400px;
+  margin: 0 auto;
+  img {
+    height: auto;
+    max-height: 400px;
+    width: 400px;
+  }
+}
 ul.performances {
   margin: 0 auto;
   max-width: 600px;

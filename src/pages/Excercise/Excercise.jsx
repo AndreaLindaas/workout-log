@@ -78,6 +78,14 @@ export default function Excercise() {
       </Helmet>
       <h1>{excercise.name}</h1>
 
+      {excercise.picture && (
+        <div className="image">
+          <img
+            src={`https://trening.pockethost.io/api/files/excercises/${excercise.id}/${excercise.picture}`}
+          />
+        </div>
+      )}
+
       <div className="chart-container">
         <AreaChart
           data={chartData}
