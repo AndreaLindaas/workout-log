@@ -80,7 +80,7 @@ export default function RegisterPerformance() {
   if (excercises.length === 0) {
     return (
       <>
-        <div className="center">
+        <div className="center loading">
           <CircularProgress />
         </div>
       </>

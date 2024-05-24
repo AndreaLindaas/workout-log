@@ -84,7 +84,7 @@ export default function Dashboard() {
         </p>
       )}
       {isLoading && (
-        <div className="center">
+        <div className="center loading">
           <CircularProgress />
         </div>
       )}

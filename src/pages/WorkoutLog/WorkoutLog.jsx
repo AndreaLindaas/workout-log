@@ -59,7 +59,7 @@ export default function WorkoutLog() {
         <p className="center"> You have not performed any excercises yet</p>
       )}
       {isLoading && (
-        <div className="center">
+        <div className="center loading">
           <CircularProgress />
         </div>
       )}
